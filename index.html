@@ -53,7 +53,7 @@ td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
 td.n{font-weight:700;white-space:nowrap}td.d{white-space:nowrap}
 .acts{display:flex;gap:6px;flex-wrap:wrap}.acts button{min-height:36px;padding:6px 12px;font-size:13px}
 .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:12px}
-.tools input{max-width:320px}
+.tools input{max-width:520px;flex:1 1 380px}
 .note{font-size:13px;color:var(--mut);margin-top:10px}
 .login{max-width:420px;margin:clamp(30px,8vh,90px) auto}
 .big{font-size:20px;min-height:56px;text-transform:uppercase}
@@ -69,7 +69,7 @@ textarea{resize:vertical;min-height:96px}
 .chips button{background:var(--sky);color:var(--ink);font-weight:500;font-size:13px;min-height:34px;padding:5px 12px;border-radius:999px}
 .why{font-size:13px;color:var(--bad);margin-top:3px}
 .scroll{overflow-x:auto}
-@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;color:var(--mut)}.stack td:empty{display:none}}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:10em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:9.5em;margin-inline-start:-10em;color:var(--mut)}.stack td:empty{display:none}}
 @media print{.top,.noprint{display:none}}
 </style>
 <script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
@@ -78,11 +78,11 @@ textarea{resize:vertical;min-height:96px}
 </head>
 <body>
 <header class="top">
-  <!-- ԼՈԳՈՆԵՐ. սեփական դոմենում տեղադրելիս դրեք ձեր պաշտոնական ֆայլերը (օր.՝ logo-left.png, logo-right.png)
-       նույն թղթապանակում և data-src-ը փոխարինեք src-ով։ Առանց ֆայլի տեղը մնում է անտեսանելի։ -->
+  <!-- ԼՈԳՈՆԵՐ։ Սեփական դոմենում տեղադրելիս դրեք ձեր պաշտոնական ֆայլերը (օրինակ՝ logo-left.png, logo-right.png)
+       նույն թղթապանակում, data-src-ը փոխարինեք src-ով և հանեք hidden-ը։ Առանց ֆայլի տեղը մնում է անտեսանելի։ -->
   <div style="display:flex;gap:14px;align-items:center">
   <img class="logo" alt="" data-src="logo-left.png" hidden>
-  <div><h1>Տաքսու լիցենզիաների ռեեստր</h1><small>Ավտոբուսային գծերով երթևեկության թույլտվություն · ԵԵԿ – ՆԳՆ</small></div>
+  <div><h1>Տաքսու լիցենզիաների ռեեստր</h1><small>Ավտոբուսային գծերով երթևեկելու թույլտվություն · ԵԵԿ – ՆԳՆ</small></div>
   <img class="logo" alt="" data-src="logo-right.png" hidden>
   </div>
   <div id="who" class="hidden" style="display:flex;gap:10px;align-items:center"><span id="whoName"></span><button class="ghost" id="logout">Ելք</button></div>
@@ -96,7 +96,7 @@ textarea{resize:vertical;min-height:96px}
     <label for="lp">Գաղտնաբառ</label><input id="lp" type="password" autocomplete="current-password" autocapitalize="off" required>
     <div class="err" id="lErr"></div>
     <button type="submit" style="width:100%;margin-top:6px">Մուտք</button>
-    <p class="note">ԵԵԿ ադմինիստրատոր՝ լիցենզիաների տրամադրում և չեղարկում։ Պարեկային ծառայություն՝ միայն ստուգում։</p>
+    <p class="note">ԵԵԿ-ի ադմինիստրատոր՝ լիցենզիաների տրամադրում և չեղարկում։ Պարեկային ծառայություն՝ միայն ստուգում։</p>
   </form>
 </section>
 
@@ -117,7 +117,7 @@ textarea{resize:vertical;min-height:96px}
       </div>
       <div class="err" id="nErr"></div>
       <button type="submit" id="bIssue" style="width:100%">Տրամադրել լիցենզիա</button>
-      <p class="note">Ժամկետը լռելյայն 2 ամիս է։ Համարը գեներացվում է ավտոմատ։ Ժամկետը լրանալուն պես լիցենզիան չեղարկվում է ավտոմատ։</p>
+      <p class="note">Լռելյայն ժամկետը 2 ամիս է։ Համարը ստեղծվում է ինքնաբերաբար, իսկ ժամկետը լրանալուն պես լիցենզիան ավտոմատ կերպով չեղարկվում է։</p>
     </form>
     <div>
       <div id="preview" class="lic"><div class="empty">Տրամադրված լիցենզիան և QR կոդը կհայտնվեն այստեղ</div></div>
@@ -127,10 +127,10 @@ textarea{resize:vertical;min-height:96px}
   <div class="card" style="margin-top:20px">
     <div class="tools">
       <h2 style="margin:0">Ռեեստր <span id="count" style="color:var(--mut);font-weight:500"></span></h2>
-      <input id="q" placeholder="Որոնում՝ համար, համարանիշ, VIN, անուն">
+      <input id="q" placeholder="Որոնում՝ համար, համարանիշ, VIN">
     </div>
     <div class="scroll"><table class="stack">
-      <thead><tr><th>Համար</th><th>Վարորդ</th><th>Մոդել</th><th>Համարանիշ</th><th>VIN</th><th>Ժամկետ</th><th>Կարգավիճակ</th><th></th></tr></thead>
+      <thead><tr><th>Համար</th><th>Վարորդ</th><th>Մոդել</th><th>Պետհամարանիշ</th><th>VIN</th><th>Ժամկետ</th><th>Կարգավիճակ</th><th></th></tr></thead>
       <tbody id="rows"></tbody>
     </table></div>
     <div id="dbNote" class="note"></div>
@@ -143,7 +143,7 @@ textarea{resize:vertical;min-height:96px}
     <p id="revWhat" style="margin:0 0 4px"></p>
     <label for="revReason">Չեղարկման պատճառ (պարտադիր)</label>
     <textarea id="revReason" rows="4" placeholder="Օրինակ՝ վարորդը դուրս է եկել աշխատանքից"></textarea>
-    <div class="chips" id="chips"><button type="button">Վարորդը դուրս է եկել աշխատանքից</button><button type="button">Տաքսի ծառայության դիմում</button><button type="button">Ավտոբուսային գծի կանոնների խախտում</button><button type="button">QR կոդը կորել կամ վնասվել է</button></div>
+    <div class="chips" id="chips"><button type="button">Վարորդը դուրս է եկել աշխատանքից</button><button type="button">Տաքսի ծառայության դիմումի հիման վրա</button><button type="button">Ավտոբուսային գծի կանոնների խախտում</button><button type="button">QR կոդը կորել կամ վնասվել է</button></div>
     <div class="err" id="rErr"></div>
     <div class="acts" style="justify-content:flex-end;margin-top:6px"><button type="button" class="ghost" id="rBack">Հետ</button><button type="submit" class="red" id="rOk">Չեղարկել լիցենզիան</button></div>
   </form>
@@ -162,8 +162,8 @@ textarea{resize:vertical;min-height:96px}
 
 <script>
 {
-const USERS={admin:{p:["admin"],role:"admin",name:"ԵԵԿ ադմին"},user:{p:["112","user112","user 112"],role:"user",name:"Պարեկային ծառայություն"}};
-/* Կայքի հասցեն, որը գրվում է QR կոդում։ Սեփական դոմենի դեպքում փոխել միայն այս տողը */
+const USERS={admin:{p:["admin"],role:"admin",name:"ԵԵԿ-ի ադմինիստրատոր"},user:{p:["112","user112","user 112"],role:"user",name:"Պարեկային ծառայություն"}};
+/* Կայքի հասցեն, որը գրվում է QR կոդում։ Սեփական դոմենի դեպքում փոխեք միայն այս տողը։ */
 const SITE="https://pclilit115.github.io/TaxiBasa/";
 const $=id=>document.getElementById(id);
 const hashNum=()=>{const m=String(location.hash||"").match(/^#lic-(\d{1,6})$/i);return m?m[1]:null};
@@ -181,10 +181,10 @@ function lsLoad(){try{return JSON.parse(localStorage.getItem(LS)||"[]")}catch(e)
 function lsSave(){try{localStorage.setItem(LS,JSON.stringify(list))}catch(e){}}
 async function connect(){
   try{db=await claude.use("db")}catch(e){db=null}
-  if(!db){list=lsLoad();loaded=true;setTimeout(autoRevoke,0);$("dbNote").textContent="Ընդհանուր տվյալների բազան հասանելի չէ․ տվյալները պահվում են միայն այս բրաուզերում։";render();return}
-  $("dbNote").textContent="Տվյալները պահվում են ընդհանուր բազայում և հասանելի են բոլոր մուտք գործողներին։";
-  const t=setTimeout(()=>{$("dbNote").textContent="Բազան չի պատասխանում․ փորձեք թարմացնել էջը։"},10000);
-  unsub=db.collection("licenses").onSnapshot(s=>{clearTimeout(t);loaded=true;list=s.docs.map(d=>({id:d.id,...d.data()}));render();autoRevoke();if(pendingHash&&role==="admin"){pendingHash=false;openFromHash()}if(role==="user"&&$("cNum").value)check()},e=>{clearTimeout(t);$("dbNote").textContent="Բազայի սխալ․ "+(e&&e.message||"")})
+  if(!db){list=lsLoad();loaded=true;setTimeout(autoRevoke,0);$("dbNote").textContent="Ընդհանուր տվյալների բազան հասանելի չէ։ Տվյալները պահվում են միայն այս բրաուզերում։";render();return}
+  $("dbNote").textContent="Տվյալները պահվում են ընդհանուր բազայում և հասանելի են համակարգ մուտք գործած բոլոր օգտատերերին։";
+  const t=setTimeout(()=>{$("dbNote").textContent="Բազան չի պատասխանում։ Փորձեք թարմացնել էջը։"},10000);
+  unsub=db.collection("licenses").onSnapshot(s=>{clearTimeout(t);loaded=true;list=s.docs.map(d=>({id:d.id,...d.data()}));render();autoRevoke();if(pendingHash&&role==="admin"){pendingHash=false;openFromHash()}if(role==="user"&&$("cNum").value)check()},e=>{clearTimeout(t);$("dbNote").textContent="Բազայի սխալ։"+(e&&e.message?" ("+e.message+")":"")})
 }
 async function save(l){
   if(db){await db.collection("licenses").doc(l.id).set(l)}
@@ -206,7 +206,7 @@ function openFromHash(){const n=hashNum();if(!n||!role)return;const num="ԵԵԿ-
 let pendingHash=false;
 window.addEventListener("hashchange",openFromHash);
 $("fLogin").addEventListener("submit",e=>{e.preventDefault();const u=USERS[$("lu").value.trim().toLowerCase()];
-  if(!u||!u.p.includes($("lp").value.trim().toLowerCase())){$("lErr").textContent="Սխալ օգտանուն կամ գաղտնաբառ";return}
+  if(!u||!u.p.includes($("lp").value.trim().toLowerCase())){$("lErr").textContent="Սխալ օգտանուն կամ գաղտնաբառ։";return}
   $("lErr").textContent="";$("lp").value="";enter(u.role)});
 $("logout").addEventListener("click",()=>{try{sessionStorage.removeItem("role")}catch(e){}role=null;
   ["vAdmin","vUser","who"].forEach(i=>$(i).classList.add("hidden"));$("vLogin").classList.remove("hidden");$("cRes").innerHTML="";$("cNum").value=""});
@@ -219,30 +219,30 @@ function card(l,withQr){
    <dl><dt>Վարորդ</dt><dd>${esc(l.driver)}</dd><dt>Մոդել</dt><dd>${esc(l.model)}</dd><dt>Պետհամարանիշ</dt><dd>${esc(l.plate)}</dd>
    <dt>VIN</dt><dd>${esc(l.vin)}</dd><dt>Ժամկետ</dt><dd>${esc(fmt(l.from))} – ${esc(fmt(l.to))}</dd>
    ${l.status==="revoked"?`<dt>Չեղարկվել է</dt><dd>${esc(fmt(l.revokedAt))}${l.auto?" (ավտոմատ)":""}</dd><dt>Պատճառ</dt><dd style="color:var(--bad)">${esc(l.revokeReason||"—")}</dd>`:""}</dl>
-   ${withQr?`<div class="qr" id="qr"></div><div class="note">QR կոդը փակցվում է մեքենայի վրա․ սկանավորելիս բացվում է այս կայքը՝ լիցենզիայի տվյալներով</div>`:""}</div>`
+   ${withQr?`<div class="qr" id="qr"></div><div class="note">QR կոդը փակցվում է մեքենայի վրա։ Սկանավորելիս բացվում է այս կայքը՝ լիցենզիայի տվյալներով։</div>`:""}</div>`
 }
 function drawQr(l){const el=$("qr");if(!el)return;
   const txt=`${SITE}#lic-${String(l.seq||0).padStart(4,"0")}`;
   try{if(typeof qrcode==="function"){const q=qrcode(0,"M");q.addData(txt);q.make();el.innerHTML=q.createSvgTag({cellSize:4,margin:2,scalable:true});const sv=el.querySelector("svg");if(sv){sv.style.width="160px";sv.style.height="160px";sv.style.display="block"}return}}catch(e){}
   try{if(typeof QRCode==="function"){el.innerHTML="";new QRCode(el,{text:txt,width:160,height:160,correctLevel:QRCode.CorrectLevel.M});return}}catch(e){}
-  el.style.background="none";el.innerHTML='<span class="err">QR կոդը չստեղծվեց․ թարմացրեք էջը</span>'}
+  el.style.background="none";el.innerHTML='<span class="err">QR կոդը չստեղծվեց։ Թարմացրեք էջը։</span>'}
 function show(l){$("preview").outerHTML=`<div id="preview">${card(l,true)}<div class="acts noprint" style="margin-top:10px"><button class="ghost" id="pClose">Փակել</button></div></div>`;drawQr(l);$("pClose").onclick=()=>{$("preview").outerHTML=`<div id="preview" class="lic"><div class="empty">Տրամադրված լիցենզիան և QR կոդը կհայտնվեն այստեղ</div></div>`}}
 
 /* admin: issue */
 $("fFrom").addEventListener("change",()=>{$("fTo").value=plus2m($("fFrom").value)});
 $("fNew").addEventListener("submit",async e=>{e.preventDefault();if(role!=="admin")return;
   const vin=$("fVin").value.trim().toUpperCase(),plate=$("fPlate").value.trim().toUpperCase().replace(/\s/g,"");
-  if(!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)){$("nErr").textContent="VIN-ը պետք է լինի 17 նիշ (լատինատառ և թվեր, առանց I, O, Q)";return}
-  if($("fTo").value<=$("fFrom").value){$("nErr").textContent="Ավարտի ամսաթիվը պետք է լինի տրամադրումից հետո";return}
+  if(!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)){$("nErr").textContent="VIN-ը պետք է բաղկացած լինի 17 նիշից (լատինատառ և թվանշաններ, առանց I, O, Q տառերի)։";return}
+  if($("fTo").value<=$("fFrom").value){$("nErr").textContent="Ավարտի ամսաթիվը պետք է լինի տրամադրման ամսաթվից հետո։";return}
   const dup=list.find(x=>status(x)[2]&&(x.plate===plate||x.vin===vin));
-  if(dup){$("nErr").textContent=`Այս մեքենան արդեն ունի գործող լիցենզիա՝ ${dup.num}`;return}
+  if(dup){$("nErr").textContent=`Այս մեքենան արդեն ունի գործող լիցենզիա՝ ${dup.num}։`;return}
   const seq=list.reduce((m,x)=>Math.max(m,x.seq||0),0)+1;
   const l={id:"L"+String(seq).padStart(4,"0")+"-"+Date.now().toString(36),seq,num:"ԵԵԿ-"+String(seq).padStart(4,"0"),
     driver:$("fDriver").value.trim(),model:$("fModel").value.trim(),plate,vin,from:$("fFrom").value,to:$("fTo").value,
     status:"active",createdAt:new Date().toISOString()};
   $("bIssue").disabled=true;$("nErr").textContent="";
   try{await save(l);show(l);["fDriver","fModel","fPlate","fVin"].forEach(i=>$(i).value="");$("fFrom").value=today();$("fTo").value=plus2m(today())}
-  catch(err){$("nErr").textContent="Չհաջողվեց պահպանել․ "+(err&&err.message||"")}
+  catch(err){$("nErr").textContent="Չհաջողվեց պահպանել։"+(err&&err.message?" ("+err.message+")":"")}
   $("bIssue").disabled=false});
 
 /* admin: table */
@@ -252,12 +252,12 @@ function render(){
   const rows=list.slice().sort((a,b)=>(b.seq||0)-(a.seq||0)).filter(l=>!q||[l.num,l.plate,l.vin,l.driver].some(v=>norm(v).includes(q)));
   $("count").textContent=`· ${list.length}`;
   $("rows").innerHTML=rows.length?rows.map(l=>{const[st,cls]=status(l);return `<tr>
-   <td class="n">${esc(l.num)}</td><td>${esc(l.driver)}</td><td>${esc(l.model)}</td><td class="d">${esc(l.plate)}</td><td style="font-size:13px">${esc(l.vin)}</td>
-   <td class="d">${esc(fmt(l.from))} – ${esc(fmt(l.to))}</td><td><span class="stamp ${cls}">${st}</span>${l.status==="revoked"&&l.revokeReason?`<div class="why">${esc(l.revokeReason)}</div>`:""}</td>
+   <td class="n">${esc(l.num)}</td><td>${esc(l.driver)}</td><td>${esc(l.model)}</td><td class="d">${esc(l.plate)}</td><td style="font-size:13px;overflow-wrap:anywhere;min-width:8em">${esc(l.vin)}</td>
+   <td>${esc(fmt(l.from))}&nbsp;– ${esc(fmt(l.to))}</td><td><span class="stamp ${cls}">${st}</span>${l.status==="revoked"&&l.revokeReason?`<div class="why">${esc(l.revokeReason)}</div>`:""}</td>
    <td><div class="acts"><button class="ghost" data-a="view" data-id="${esc(l.id)}">Դիտել</button>${l.status==="revoked"
      ?`<button class="green" data-a="restore" data-id="${esc(l.id)}">Վերականգնել</button>`
-     :`<button class="red" data-a="revoke" data-id="${esc(l.id)}">Հանել</button>`}</div></td></tr>`}).join("")
-   :`<tr><td colspan="8" class="empty">${list.length?"Ոչինչ չի գտնվել":"Դեռ լիցենզիաներ չկան․ տրամադրեք առաջինը վերևի ձևով"}</td></tr>`;
+     :`<button class="red" data-a="revoke" data-id="${esc(l.id)}">Չեղարկել</button>`}</div></td></tr>`}).join("")
+   :`<tr><td colspan="8" class="empty">${list.length?"Ոչինչ չի գտնվել։":"Լիցենզիաներ դեռ չկան։ Տրամադրեք առաջինը վերևի ձևաթղթով։"}</td></tr>`;
 }
 $("q").addEventListener("input",render);
 let revId=null;
@@ -268,11 +268,11 @@ $("dlg").addEventListener("click",e=>{if(e.target===$("dlg"))closeRev()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&revId)closeRev()});
 $("chips").addEventListener("click",e=>{const b=e.target.closest("button");if(b){$("revReason").value=b.textContent;$("revReason").focus()}});
 $("fRev").addEventListener("submit",async e=>{e.preventDefault();if(role!=="admin")return;
-  const why=$("revReason").value.trim();if(why.length<3){$("rErr").textContent="Գրեք չեղարկման պատճառը";return}
+  const why=$("revReason").value.trim();if(why.length<3){$("rErr").textContent="Գրեք չեղարկման պատճառը։";return}
   const l=list.find(x=>x.id===revId);if(!l){closeRev();return}
   $("rOk").disabled=true;
   try{await save({...l,status:"revoked",revokedAt:today(),revokeReason:why,auto:false});closeRev()}
-  catch(err){$("rErr").textContent="Չհաջողվեց պահպանել․ "+(err&&err.message||"")}
+  catch(err){$("rErr").textContent="Չհաջողվեց պահպանել։"+(err&&err.message?" ("+err.message+")":"")}
   $("rOk").disabled=false});
 $("rows").addEventListener("click",async e=>{const b=e.target.closest("button");if(!b||role!=="admin")return;
   const l=list.find(x=>x.id===b.dataset.id);if(!l)return;
@@ -281,13 +281,13 @@ $("rows").addEventListener("click",async e=>{const b=e.target.closest("button");
   b.disabled=true;
   const n={...l,status:"active",revokedAt:null,revokeReason:null,auto:false};
   if(n.to<today()){n.from=today();n.to=plus2m(today())}
-  try{await save(n)}catch(err){$("dbNote").textContent="Չհաջողվեց պահպանել․ "+(err&&err.message||"");render()}});
+  try{await save(n)}catch(err){$("dbNote").textContent="Չհաջողվեց պահպանել։"+(err&&err.message?" ("+err.message+")":"");render()}});
 
 /* auto-revoke expired licenses (runs while the admin has the page open) */
 const autoBusy=new Set();
 async function autoRevoke(){if(role!=="admin"||!loaded)return;const t=today();
   for(const l of list){if(l.status!=="revoked"&&l.to<t&&!autoBusy.has(l.id)){autoBusy.add(l.id);
-    try{await save({...l,status:"revoked",revokedAt:t,revokeReason:"Ավտոմատ չեղարկում՝ գործողության ժամկետը լրացել է",auto:true})}catch(e){}autoBusy.delete(l.id)}}}
+    try{await save({...l,status:"revoked",revokedAt:t,revokeReason:"Ավտոմատ չեղարկում՝ գործողության ժամկետը լրացել է։",auto:true})}catch(e){}autoBusy.delete(l.id)}}}
 setInterval(autoRevoke,60*60*1000);
 
 /* patrol: check */
@@ -297,7 +297,7 @@ function check(){
   const l=list.find(x=>norm(x.num).replace(/^0+/,"")===q);
   if(!l){$("cRes").className="result bad";$("cRes").innerHTML=`<div class="lic"><span class="stamp s-bad">Չի գտնվել</span><p style="margin:10px 0 0">«${esc(raw)}» համարով լիցենզիա ռեեստրում չկա։ Լիցենզիան համարվում է չգործող։</p></div>`;return}
   const[,,ok]=status(l);$("cRes").className="result "+(ok?"ok":"bad");
-  $("cRes").innerHTML=card(l,false)+`<p class="note">${ok?"Երթևեկությունն ավտոբուսային գծով թույլատրելի է։":"Լիցենզիան չի գործում․ կիրառվում է տուգանք։"} Համեմատեք պետհամարանիշը և VIN-ը մեքենայի տվյալների հետ։</p>`;
+  $("cRes").innerHTML=card(l,false)+`<p class="note">${ok?"Ավտոբուսային գծով երթևեկելը թույլատրվում է։":"Լիցենզիան չի գործում։ Կիրառվում է տուգանք։"} Համեմատեք պետհամարանիշը և VIN-ը մեքենայի տվյալների հետ։</p>`;
 }
 $("fCheck").addEventListener("submit",e=>{e.preventDefault();check()});
 
